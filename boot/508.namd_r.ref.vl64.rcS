@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo 64 > /proc/sys/abi/sve_default_vector_length
+cat /proc/sys/abi/sve_default_vector_length
+
+cd /root/benchspec/CPU/508.namd_r/run/run_base_refrate_mytest-64.0000/
+m5 checkpoint
+m5 resetstats
+../run_base_refrate_mytest-64.0000/namd_r_base.mytest-64 --input apoa1.input --output apoa1.ref.output --iterations 65
+m5 exit

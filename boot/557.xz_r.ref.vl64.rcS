@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo 64 > /proc/sys/abi/sve_default_vector_length
+cat /proc/sys/abi/sve_default_vector_length
+
+cd /root/benchspec/CPU/557.xz_r/run/run_base_refrate_mytest-64.0000/
+m5 checkpoint
+m5 resetstats
+../run_base_refrate_mytest-64.0000/xz_r_base.mytest-64 cld.tar.xz 160 19cf30ae51eddcbefda78dd06014b4b96281456e078ca7c13e1c0c9e6aaea8dff3efb4ad6b0456697718cede6bd5454852652806a657bb56e07d61128434b474 59796407 61004416 6
+m5 exit

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo 64 > /proc/sys/abi/sve_default_vector_length
+cat /proc/sys/abi/sve_default_vector_length
+
+cd /root/benchspec/CPU/526.blender_r/run/run_base_test_mytest-64.0000/
+m5 checkpoint
+m5 resetstats
+../run_base_test_mytest-64.0000/blender_r_base.mytest-64 cube.blend --render-output cube_ --threads 1 -b -F RAWTGA -s 1 -e 1 -a
+m5 exit

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+echo 256 > /proc/sys/abi/sve_default_vector_length
+cat /proc/sys/abi/sve_default_vector_length
+
+#m5 checkpoint
+#m5 exit
+m5 resetstats 
+pwd
+ls
+m5 exit
+#./mtc.x 10 100 10 0.2 yes
+#./XSBench -t 1 -s small -p 10000

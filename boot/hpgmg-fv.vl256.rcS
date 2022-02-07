@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo 256 > /proc/sys/abi/sve_default_vector_length
+cat /proc/sys/abi/sve_default_vector_length
+
+m5 checkpoint
+m5 resetstats 
+/root/hpbin/hpgmg-fv-gcc8c-8sve-s 5 6
+m5 exit

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo 64 > /proc/sys/abi/sve_default_vector_length
+cat /proc/sys/abi/sve_default_vector_length
+
+m5 checkpoint
+m5 resetstats 
+/root/XSbin/XSBench.gcc8c.8sve.s -t 1 -s small -p 10000
+m5 exit

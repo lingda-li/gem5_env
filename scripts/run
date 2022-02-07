@@ -1,0 +1,9 @@
+# typical command lines
+../gem5_sve/build/ARM/gem5.opt ../gem5_sve/configs/example/arm/fs_bigLITTLE.py --cpu-type atomic --kernel vmlinux.vexpress_gem5_v1_64 --dtb armv8_gem5_v1_1cpu.dtb --disk aarch64-ubuntu-trusty-headless.img
+../gem5_sve/build/ARM/gem5.opt ../gem5_sve/configs/example/arm/fs_bigLITTLE.py --cpu-type atomic --kernel vmlinux.4.15_64 --dtb armv8_gem5_v1_1cpu.dtb --disk aarch64-ubuntu-trusty-headless.img
+../gem5_sve/build/ARM/gem5.opt ../gem5_sve/configs/example/arm/fs_bigLITTLE.py --cpu-type timing --kernel vmlinux.4.15_64 --dtb armv8_gem5_v1_1cpu.dtb --disk aarch64-ubuntu-trusty-headless.img --restore-from cpt/cpt.303644455032487000 --caches
+../gem5_sve/build/ARM/gem5.opt ../gem5_sve/configs/example/arm/fs_bigLITTLE.py --cpu-type atomic --kernel vmlinux.4.15_64 --dtb armv8_gem5_v1_4cpu.dtb --disk aarch64-ubuntu-trusty-headless.img --big-cpus=4
+../gem5_sve/build/ARM/gem5.opt ../gem5_sve/configs/example/arm/fs_bigLITTLE.py --cpu-type timing --kernel vmlinux.4.15_64 --dtb armv8_gem5_v1_4cpu.dtb --disk aarch64-ubuntu-trusty-headless.img --restore-from cpt/cpt.4632655241006184000 --big-cpus=4 --caches
+../gem5_sve/build/ARM/gem5.opt ../gem5_sve/configs/example/arm/fs_bigLITTLE.py --cpu-type atomic --kernel vmlinux.4.15_64 --dtb armv8_gem5_v1_1cpu.dtb --disk aarch64-ubuntu-trusty-headless.img --arm-sve-vl=16
+../gem5_sve/build/ARM/gem5.opt ../gem5_sve/configs/example/arm/fs_bigLITTLE.py --cpu-type atomic --kernel vmlinux.4.15_64 --dtb armv8_gem5_v1_1cpu.dtb --disk aarch64-ubuntu-trusty-headless.img --arm-sve-vl=16 --bootscript boot/XSBench.vl256.rcS
+../gem5_sve/build/ARM/gem5.opt -d res/mtc.vl256 ../gem5_sve/configs/example/arm/fs_bigLITTLE.py --cpu-type atomic --kernel vmlinux.4.15_64 --dtb armv8_gem5_v1_1cpu.dtb --disk aarch64-ubuntu-trusty-headless.img --arm-sve-vl=16 --bootscript boot/mtc.vl256.rcS

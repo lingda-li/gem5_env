@@ -1,0 +1,3 @@
+sudo mount -oloop,offset=32256 ../aarch-system-20180409/disks/aarch64-ubuntu-trusty-headless.img ../img/
+sudo umount ../img
+tmux attach -d -t 0

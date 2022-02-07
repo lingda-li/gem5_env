@@ -1,0 +1,6 @@
+host_inst_rate
+host_op_rate
+sim_ticks
+system.bigCluster.cpus.ipc_total
+system.bigCluster.l2.overall_accesses::total
+system.bigCluster.l2.overall_miss_rate::total
