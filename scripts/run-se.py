@@ -2,8 +2,8 @@ import argparse
 import os
 import subprocess
 from datetime import datetime
-from benchlist_spectest import *
-#from benchlist_specref import *
+#from benchlist_spectest import *
+from benchlist_specref import *
 
 
 parser = argparse.ArgumentParser(description="Run gem5 SE simulation")
@@ -28,6 +28,8 @@ with open(log_name, 'w') as log_file:
     os.chdir(benchmark_dir)
     res_dir = cwd + '/res/' + args.case + '/' + name
     gem5_cmd = [gem5_bin, '-d', res_dir, config_file]
+    gem5_cmd.append('--restore')
+    gem5_cmd.append(cwd + '/res/se.ref.at.sp100m.10b.cp/' + name + '/cpt')
     for cfg in args.cfgs:
       cfg = cfg.replace('\'', '')
       cfg = cfg.replace('\"', '')
