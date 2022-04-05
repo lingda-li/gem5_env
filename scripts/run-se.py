@@ -9,6 +9,7 @@ from benchlist_specref import *
 parser = argparse.ArgumentParser(description="Run gem5 SE simulation")
 parser.add_argument('-c', '--case', required=True)
 parser.add_argument('-t', '--trace-dir', default='')
+parser.add_argument('-l', '--load-checkpoints', action='store_true')
 parser.add_argument('cfgs', nargs='*')
 args = parser.parse_args()
 
@@ -21,15 +22,16 @@ config_file = gem5_dir + '/configs/example/arm/starter_se.py'
 log_name = cwd + '/log/' + args.case + '_' + datetime.now().strftime("%m%d%y") + '.log'
 with open(log_name, 'w') as log_file:
   print('Write log to', log_name)
-  for name, cmd in benchmark_list:
+  for name, cmd, simpoint in benchmark_list:
     log_file.write('********** ' + name + ' **********\n')
     log_file.flush()
     benchmark_dir = cwd + benchmark_dir_prefix + name + benchmark_dir_postfix
     os.chdir(benchmark_dir)
     res_dir = cwd + '/res/' + args.case + '/' + name
     gem5_cmd = [gem5_bin, '-d', res_dir, config_file]
-    gem5_cmd.append('--restore')
-    gem5_cmd.append(cwd + '/res/se.ref.at.sp100m.10b.cp/' + name + '/cpt')
+    if args.load_checkpoints:
+      gem5_cmd.append('--restore')
+      gem5_cmd.append(cwd + '/res/se.ref.at.sp100m.10b.cp/' + name + '/cpt')
     for cfg in args.cfgs:
       cfg = cfg.replace('\'', '')
       cfg = cfg.replace('\"', '')
