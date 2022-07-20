@@ -3,7 +3,8 @@ import os
 import subprocess
 from datetime import datetime
 #from benchlist_spectest import *
-from benchlist_specref import *
+from benchlist_spectest_train import *
+#from benchlist_specref import *
 
 
 parser = argparse.ArgumentParser(description="Run gem5 SE simulation")
@@ -22,7 +23,8 @@ config_file = gem5_dir + '/configs/example/arm/starter_se.py'
 log_name = cwd + '/log/' + args.case + '_' + datetime.now().strftime("%m%d%y") + '.log'
 with open(log_name, 'w') as log_file:
   print('Write log to', log_name)
-  for name, cmd, simpoint in benchmark_list:
+  #for name, cmd, simpoint in benchmark_list:
+  for name, cmd in benchmark_list:
     log_file.write('********** ' + name + ' **********\n')
     log_file.flush()
     benchmark_dir = cwd + benchmark_dir_prefix + name + benchmark_dir_postfix
@@ -38,7 +40,7 @@ with open(log_name, 'w') as log_file:
       cfg = cfg.replace(' ', '')
       gem5_cmd.append(cfg)
     gem5_cmd.append(cmd)
-    print(gem5_cmd)
+    print(*gem5_cmd)
     process = subprocess.call(gem5_cmd, stdout=log_file, stderr=log_file, universal_newlines=True)
     if args.trace_dir != '':
       log_file.write('********** scp traces **********\n')
@@ -46,8 +48,12 @@ with open(log_name, 'w') as log_file:
       trace_dir = 'hpc1:/lfs1/work/lli/trace_' + args.trace_dir + '/'
       scp_cmd = ['scp', 'trace.txt', trace_dir + name + '.txt']
       process = subprocess.call(scp_cmd, stdout=log_file, stderr=log_file, universal_newlines=True)
-      scp_cmd = ['scp', 'sq.trace.txt', trace_dir + name + '.sq.txt']
-      process = subprocess.call(scp_cmd, stdout=log_file, stderr=log_file, universal_newlines=True)
-      rm_cmd = ['rm', '-f', 'trace.txt', 'sq.trace.txt']
+      rm_cmd = ['rm', '-f', 'trace.txt']
       process = subprocess.call(rm_cmd, stdout=log_file, stderr=log_file, universal_newlines=True)
+      if os.path.exists('sq.trace.txt'):
+        log_file.write('********** scp sq traces **********\n')
+        scp_cmd = ['scp', 'sq.trace.txt', trace_dir + name + '.sq.txt']
+        process = subprocess.call(scp_cmd, stdout=log_file, stderr=log_file, universal_newlines=True)
+        rm_cmd = ['rm', '-f', 'sq.trace.txt']
+        process = subprocess.call(rm_cmd, stdout=log_file, stderr=log_file, universal_newlines=True)
     log_file.flush()
