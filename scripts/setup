@@ -1,0 +1,4 @@
+mkdir stats
+mkdir bin
+mkdir log
+mkdir res
