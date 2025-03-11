@@ -9,7 +9,11 @@ fi
 #postfix="_rs"
 #postfix="_pb"
 #postfix="_all"
-postfix="_spec"
+#postfix="_spec"
+#postfix="_spectest_test"
+postfix="_spectest_train"
+#postfix="_npb_s"
+#postfix="_mm"
 
 cud=`pwd`
 input_path="$cud/res/$1"
@@ -30,13 +34,16 @@ do
         continue
     fi
 
-    echo "********** $ben **********" >> $output_file
+    #echo "********** $ben **********" >> $output_file
     stat_num=1
     while [ $stat_num -le $stats_num ]
     do
         cur_stat=`head -n $stat_num $cud/scripts/statlist | tail -n 1`
         if [ ! "$cur_stat" ]; then
             break
+        fi
+        if [[ "$cur_stat" == "#"* ]]; then
+            continue
         fi
         grep "$cur_stat" $benlog | tail -n 1 >> $output_file
         output=`grep "$cur_stat" $benlog | tail -n 1`
@@ -45,7 +52,7 @@ do
         fi
         stat_num=$(( stat_num+1 ))
     done
-    echo                              >> $output_file
+    #echo                              >> $output_file
 
     cur_num=$(( cur_num+1 ))
 done
