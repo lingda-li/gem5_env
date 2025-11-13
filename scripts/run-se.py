@@ -28,7 +28,7 @@ benchlist = "benchlist_" + args.benchmarks
 #trace_root_dir = 'hpc1:/lfs1/work/lli/trace_'
 #trace_root_dir = 'lld@acl01.csi.bnl.gov:/data1/lld/t2v/trace_'
 #trace_root_dir = '/data/lli/pr_1023/trace_'
-trace_root_dir = '/data1/lld/t2v/trace_'
+trace_root_dir = '/data2/lld/t2v/pr_0725/trace_'
 bl = importlib.import_module(benchlist)
 
 log_name = cwd + '/log/' + args.case + '_' + args.benchmarks + '_' + datetime.now().strftime("%m%d%y") + '.log'

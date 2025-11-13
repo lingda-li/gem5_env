@@ -18,8 +18,8 @@ benchmark_list = [
   ('525.x264_r', '../run_base_test_mytest-64.0000/x264_r_base.mytest-64 --dumpyuv 50 --frames 156 -o BuckBunny_New.264 BuckBunny.yuv 1280x720'),
   ('531.deepsjeng_r', '../run_base_test_mytest-64.0000/deepsjeng_r_base.mytest-64 test.txt'),
   ('548.exchange2_r', '../run_base_test_mytest-64.0000/exchange2_r_base.mytest-64 0'),
-  ('557.xz_r', '../run_base_test_mytest-64.0000/xz_r_base.mytest-64 cpu2006docs.tar.xz 4 055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae 1548636 1555348 0'),
-  ('999.specrand_ir', '../run_base_test_mytest-64.0000/specrand_ir_base.mytest-64 324342 24239')
+  ('557.xz_r', '../run_base_test_mytest-64.0000/xz_r_base.mytest-64 cpu2006docs.tar.xz 4 055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae 1548636 1555348 0')
+  #('999.specrand_ir', '../run_base_test_mytest-64.0000/specrand_ir_base.mytest-64 324342 24239')
 ]
 
 benchmark_dir_prefix = '/../benchmarks_wombat/benchspec/CPU/'
